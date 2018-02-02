@@ -280,10 +280,10 @@ public class MainActivity extends AppCompatActivity {
 
                     if (StoragePermission && RecordPermission) {
 
-                        Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Permission is Granted", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        Toast.makeText(MainActivity.this,"Permission Denied",Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this,"Permission is Denied",Toast.LENGTH_LONG).show();
 
                     }
                 }
