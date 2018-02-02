@@ -3,7 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="org.bahar.soundrecording.ListActivity">
+    <TextView
+        android:padding="5dp"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="List of Recorded Files"
+        android:gravity="center"/>
   <ListView
         android:id="@+id/showList"
         android:layout_width="match_parent"
