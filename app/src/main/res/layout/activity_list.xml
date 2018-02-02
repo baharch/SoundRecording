@@ -11,7 +11,7 @@
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
+        android:textColor="@color/colorWhite"
         style="@style/Base.TextAppearance.AppCompat.Large"
         android:background="@color/colorAccent"
         android:text="@string/list_title"
@@ -21,7 +21,6 @@
         android:id="@+id/showList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:divider="@color/colorAccent"
         android:dividerHeight="3dp"/>
 
