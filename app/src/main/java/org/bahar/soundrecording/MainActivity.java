@@ -329,6 +329,8 @@ public class MainActivity extends AppCompatActivity {
         return file;
     }
 
+
+    //not used yet
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
@@ -415,11 +417,11 @@ public class MainActivity extends AppCompatActivity {
         myList = new ArrayList<String>();
 
         myFile = new File( MyDirectory.getAbsolutePath() );
-        File thelist[] = myFile.listFiles();
+        File recordlist[] = myFile.listFiles();
 
-        for( int i=0; i< thelist.length; i++)
+        for( int i=0; i< recordlist.length; i++)
         {
-            myList.add( thelist[i].getName() );
+            myList.add( recordlist[i].getName() );
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.layout_list_view, R.id.voice_list_item, myList);

@@ -35,39 +35,23 @@ public class ListActivity extends AppCompatActivity {
         myList = new ArrayList<>();
         myFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC), "MyRecordings");
 
-        if (!myFile.mkdirs()) {
-            Log.e(LOG_TAG, "Directory not created");
-//            Intent myintent = new Intent(ListActivity.this, MainActivity.class);
-//            message="";
-//            myintent.putExtra("EXTRA_MESSAGE", message);
-//            startActivity(myintent);
-        }
+        final File recordlist[] = myFile.listFiles();
 
-        final File thelist[] = myFile.listFiles();
-
-        if (thelist.length==0) {
-            Log.e(LOG_TAG, "There is no recorded  file");
-//            Intent myintent = new Intent(ListActivity.this, MainActivity.class);
-//            message="";
-//            myintent.putExtra("EXTRA_MESSAGE", message);
-//            startActivity(myintent);
-        }
-
-        for( int i=0; i< thelist.length; i++)
+        for( int i=0; i< recordlist.length; i++)
             {
-                myList.add( thelist[i].getName() );
+                myList.add( recordlist[i].getName() );
             }
-            Toast.makeText(ListActivity.this, "Total Number of recorded files: "+thelist.length , Toast.LENGTH_LONG).show();
+            Toast.makeText(ListActivity.this, "Total Number of recorded files: "+recordlist.length , Toast.LENGTH_LONG).show();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.layout_list_view, R.id.voice_list_item, myList);
-            ShowRecordingList.setAdapter(adapter); //Set all the file in the list.
+            ShowRecordingList.setAdapter(adapter);
 
 
         ShowRecordingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-                Toast.makeText(ListActivity.this, "Selected File: "+ thelist[position].getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ListActivity.this, "Selected File: "+ recordlist[position].getName(), Toast.LENGTH_LONG).show();
                 Intent myintent = new Intent(ListActivity.this, MainActivity.class);
-                message = thelist[position].getName();
+                message = recordlist[position].getName();
                 myintent.putExtra("EXTRA_MESSAGE", message);
                 startActivity(myintent);
             }
