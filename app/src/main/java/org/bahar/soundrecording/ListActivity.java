@@ -3,6 +3,7 @@ package org.bahar.soundrecording;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +32,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         findViews();
-        myList = new ArrayList<String>();
+        myList = new ArrayList<>();
         myFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC), "MyRecordings");
 
         if (!myFile.mkdirs()) {
@@ -57,7 +58,7 @@ public class ListActivity extends AppCompatActivity {
                 myList.add( thelist[i].getName() );
             }
             Toast.makeText(ListActivity.this, "Total Number of recorded files: "+thelist.length , Toast.LENGTH_LONG).show();
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.layout_list_view, R.id.voice_list_item, myList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.layout_list_view, R.id.voice_list_item, myList);
             ShowRecordingList.setAdapter(adapter); //Set all the file in the list.
 
 
@@ -71,6 +72,9 @@ public class ListActivity extends AppCompatActivity {
                 startActivity(myintent);
             }
         });
+
+
+
     }
 
     private void findViews(){

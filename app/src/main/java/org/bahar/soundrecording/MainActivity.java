@@ -39,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
     private List<String> myList;
     String AudioSavePathInDevice = null;
     String RecordingName= null;
-    String RecordingPath;
+    String RecordingPath,mCurrent;
     MediaRecorder mediaRecorder ;
     Random random ;
     String RandomAudioFileName = "ABCDEFGHIJKLMNOP";
     public static final int RequestPermissionCode = 1;
     MediaPlayer mediaPlayer ;
     File myFile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViews();
         setStartState();
+        mCurrent="";
         //loadList(getAlbumStorageDir());
         Bundle EXTRA_MESSAGE=getIntent().getExtras();
         if (EXTRA_MESSAGE != null)
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     RecordingName=CreateRandomAudioFileName(6) + "_rec.3gp" ;
                     RecordingPath=getAlbumStorageDir().getAbsolutePath() ;
                     AudioSavePathInDevice = RecordingPath + "/" + RecordingName;
+                    mCurrent=AudioSavePathInDevice;
 
                     MediaRecorderReady();
 
@@ -157,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer = new MediaPlayer();
 
                 try {
-                    mediaPlayer.setDataSource(AudioSavePathInDevice);
+                    mediaPlayer.setDataSource(mCurrent);
                     mediaPlayer.prepare();
 
                 } catch (IOException e) {
@@ -219,10 +222,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mediaPlayer != null){
 
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
-
-                    MediaRecorderReady();
+                    File file = new File(mCurrent);
+                    boolean deleted = file.delete();
 
                 }
 
@@ -248,8 +249,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mediaPlayer != null){
 
-                    mediaPlayer.stop();
-                    mediaPlayer.release();
+                    mediaPlayer.pause();
 
                     MediaRecorderReady();
 
@@ -400,7 +400,8 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = new MediaPlayer();
 
         try {
-            mediaPlayer.setDataSource(filePath+"/"+fileName);
+            mCurrent=filePath+"/"+fileName;
+            mediaPlayer.setDataSource(mCurrent);
             mediaPlayer.prepare();
 
         } catch (IOException e) {
